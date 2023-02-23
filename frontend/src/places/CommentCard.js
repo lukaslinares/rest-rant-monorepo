@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useContext } from 'react'
 import { CurrentUser } from '../contexts/CurrentUser'
 
@@ -11,6 +12,22 @@ function CommentCard({ comment, onDelete }) {
         <button className="btn btn-danger" onClick={onDelete} >
             Delete Comment
         </button>
+=======
+import { useContext } from "react";
+import { CurrentUser } from '../contexts/CurrentUser'
+
+function CommentCard({ comment, onDelete }) {
+
+    const { currentUser } = useContext(CurrentUser)
+
+    let deleteButton = null;
+
+    if (currentUser?.userId === comment.authorId) {
+        deleteButton = (
+            <button className="btn btn-danger" onClick={onDelete} >
+                Delete Comment
+            </button>
+>>>>>>> 9.3.10-solution-jwt
         )
     }
 

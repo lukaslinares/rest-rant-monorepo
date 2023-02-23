@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { useState, useContext } from "react"
 import { useHistory } from "react-router"
+=======
+import { useContext, useState } from "react"
+>>>>>>> 9.3.10-solution-jwt
 import { CurrentUser } from '../contexts/CurrentUser'
 
 function NewCommentForm({ place, onSubmit }) {
@@ -9,7 +13,11 @@ function NewCommentForm({ place, onSubmit }) {
     const [comment, setComment] = useState({
         content: '',
         stars: 3,
+<<<<<<< HEAD
         rant: false
+=======
+        rant: false,
+>>>>>>> 9.3.10-solution-jwt
     })
 
     function handleSubmit(e) {
@@ -25,6 +33,10 @@ function NewCommentForm({ place, onSubmit }) {
 
     if (!currentUser) {
         return <p>{`You must be logged in to leave a comment on ${place.name}.`}</p>
+    }
+
+    if(!currentUser){
+        return <p>You must be logged in to leave a rant or rave.</p>
     }
 
     return (

@@ -17,13 +17,18 @@ function LoginForm() {
 
     async function handleSubmit(e) {
         e.preventDefault()
+<<<<<<< HEAD
         const response = await fetch(`http://localhost:4000/authentication/`, {
+=======
+        const response = await fetch(`http://localhost:5000/authentication/`, {
+>>>>>>> 9.3.10-solution-jwt
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(credentials)
         })
+<<<<<<< HEAD
 
         const data = await response.json()
 
@@ -33,7 +38,18 @@ function LoginForm() {
         } else {
             setErrorMessage(data.message)
         }
+=======
+>>>>>>> 9.3.10-solution-jwt
 
+        const data = await response.json()
+
+        if (response.status === 200) {
+            setCurrentUser(data.user)
+            localStorage.setItem('token', data.token)
+            history.push(`/`)
+        } else {
+            setErrorMessage(data.message)
+        }
     }
 
     return (

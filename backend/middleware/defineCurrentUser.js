@@ -1,19 +1,25 @@
 const db = require("../models")
+const jwt = require('json-web-token')
 
-const { User } = db
+const { User } = db;
 
-async function defineCurrentUser(req, res, next) {
+async function defineCurrentUser(req, res, next){
     try {
-        let user = await User.findOne({
-            where: {
-                userId: req.session.userId
-            }
-        })
-        req.currentUser = user
+        const [ method, token ] = req.headers.authorization.split(' ')
+        if(method == 'Bearer'){
+            const result = await jwt.decode('asdljasldkfjs', token)
+            const { id } = result.value
+            let user = await User.findOne({ 
+                where: {
+                    userId: id
+                }
+            })
+            req.currentUser = user
+        }
         next()
-    } catch (err) {
+    } catch(err){
         req.currentUser = null
-        next()
+        next() 
     }
 }
 
